@@ -2,11 +2,15 @@
 	<html lang="pt-br">
 		<head>
 			<meta charset="utf-8"/>
-			<title>Portal de notícias</title>
+			<title>Portal de notï¿½cias</title>
 		</head>
 	<body>
 
-		<h1>Notícia</h1>
+		<h1>Detalhes sobre a Noticia: <%= noticia[0].titulo %></h1>
+
+		<p><%= noticia[0].noticia %></p>
+		<hr>
+		<p>Criado em <%= noticia[0].data_criacao %></p>
 
 	</body>
 </html>
