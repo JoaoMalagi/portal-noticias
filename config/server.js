@@ -15,6 +15,7 @@ consign()
     //Dessa maneira nós indicamos o modulo especifico para ser executado pelo consign, assim ele so executa aquele arquivo da pasta config
     .then('config/dbConnection.js')
     .then('app/models')
+    .then('app/controllers')
     .into(app);
 
 
