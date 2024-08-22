@@ -10,7 +10,5 @@ module.exports = function(app){
         body('noticia').notEmpty().withMessage("Noticia não pode ser vazia")
     ], function(req, res){
         app.app.controllers.admin.noticias_salvar(app, req, res);
-        
-
-    })
+        })
 }

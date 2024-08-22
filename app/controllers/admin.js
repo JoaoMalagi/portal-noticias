@@ -6,13 +6,11 @@ module.exports.formulario_inclusao_noticia = function(app, req, res){
     //console.log(noticiaid)
     //console.log(req)
     if (req._parsedOriginalUrl.query != null)  {
-        console.log("sem ID");
         var connection = app.config.dbConnection();
         var NoticiasDAO = new app.app.models.NoticiasDAO(connection);
         var id_noticia = req.query;
         NoticiasDAO.getNoticia(id_noticia, function(error, result,){
-            res.render("admin/form_add_noticia", {errors : {}, noticia : result});
-            console.log(result)
+            res.render("admin/form_add_noticia", {errors : {}, noticia : result});    
         });  
     }   
     else{
@@ -22,7 +20,7 @@ module.exports.formulario_inclusao_noticia = function(app, req, res){
            
 
 module.exports.noticias_salvar = function(app, req, res){
-    
+    var id_noticia = req.query;
     var noticia = req.body;
         const errors = validationResult(req).formatWith(({msg}) => msg);
         
@@ -36,8 +34,8 @@ module.exports.noticias_salvar = function(app, req, res){
         var connection = app.config.dbConnection();
         var NoticiasDAO = new app.app.models.NoticiasDAO(connection);
 
-        NoticiasDAO.salvarNoticia(noticia, function(error, result){
-            console.log(noticia)
+        NoticiasDAO.salvarNoticia(id_noticia, noticia, function(error, result){
+            
             res.redirect("/noticias");
         });      
 
