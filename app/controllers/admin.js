@@ -1,4 +1,5 @@
-const {validationResult} = require('express-validator')
+const {validationResult} = require('express-validator');
+const NoticiasDAO = require('../models/NoticiasDAO');
 
 module.exports.formulario_inclusao_noticia = function(app, req, res){
     
@@ -37,7 +38,16 @@ module.exports.noticias_salvar = function(app, req, res){
         NoticiasDAO.salvarNoticia(id_noticia, noticia, function(error, result){
             
             res.redirect("/noticias");
-        });      
-
-}
+        });   
+    }
+module.exports.deletarNoticia = function(app, req, res){
+        console.log("final")
+        var connection = app.config.dbConnection();
+        var NoticiasDAO = new app.app.models.NoticiasDAO(connection);
+        var id_noticia = req.query;
+        console.log(req.query)
+        NoticiasDAO.deletarNoticia(id_noticia, function(errror, result){
+            res.redirect("/noticias");
+        })
+    }
  
